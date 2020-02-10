@@ -28,14 +28,3 @@ phpbench.json export-ignore
 composer.travis.json export-ignore
 karma.conf.js export-ignore
 .DS_Store export-ignore
-gpl-2.0.txt export-ignore
-gpl-3.0.txt export-ignore
-license export-ignore
-LICENSE export-ignore
-LICENSE.md export-ignore
-LICENSE.txt export-ignore
-MIT-LICENSE-history.txt export-ignore
-MIT-LICENSE.txt export-ignore
-CHANGES.md export-ignore
-change-log.md export-ignore
-PRIVACY.md export-ignore
