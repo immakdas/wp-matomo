@@ -53,6 +53,17 @@ class GenerateLangFiles extends ConsoleCommand
 		    file_put_contents($corePath, json_encode($base, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 	    }
 
+	    foreach ($plugins as $plugin => $pluginInfo) {
+		    $config = PIWIK_INCLUDE_PATH . '/plugins/' . $plugin . '/config/';
+		    foreach (['config.php', 'tracker.php'] as $file) {
+			    if (file_exists($config . $file)) {
+			        $content = include $config . $file;
+			        if (is_array($content) && empty($content)) {
+			            unlink($config . $file);
+				    }
+			    }
+		    }
+	    }
     }
 
 }

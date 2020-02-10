@@ -66,7 +66,7 @@ svn update --set-depth infinity assets
 svn update --set-depth infinity trunk
 
 echo "➤ Checking out git wp-matomo repository..."
-git clone --single-branch --branch master git@github.com:matomo-org/wp-matomo.git "$GITHUB_WORKSPACE"
+git clone --single-branch --branch release git@github.com:matomo-org/wp-matomo.git "$GITHUB_WORKSPACE"
 
 echo "➤ Copying files..."
 
@@ -79,8 +79,6 @@ cd "$SVN_DIR"
 # The --delete flag will delete anything in destination that no longer exists in source
 rsync -rc "$TMP_DIR/" trunk/ --delete
 
-# Copy dotorg assets to /assets
-rsync -rc "$GITHUB_WORKSPACE/$ASSETS_DIR/" assets/ --delete
 
 # Add everything and commit to SVN
 # The force flag ensures we recurse into subdirectories even if they are already added
@@ -94,7 +92,6 @@ svn status | grep '^\!' | sed 's/! *//' | xargs -I% svn rm %@ > /dev/null
 
 # Copy tag locally to make this a single commit
 echo "➤ Copying tag..."
-svn cp "trunk" "tags/$VERSION"
 
 svn status
 
